@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+{% if user.is_authenticated %}
     <h1>Delete Post</h1>
     
     <br/>
@@ -10,5 +12,9 @@
         <strong> Are you sure, you want to delete post {{post.title}} </strong>
             <br/>
             <button class="btn btn-secondary">Delete</button>
-        {% endblock %}
+        
     </div> 
+{% else %}
+    You are not login or sign it 
+{% endif %}
+{% endblock %}
