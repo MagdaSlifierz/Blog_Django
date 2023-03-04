@@ -2,6 +2,7 @@
 from django.db import models
 from django.contrib.auth.models import User 
 from django.utils import timezone
+from django.urls import reverse
 
 
 # Create your models here.
@@ -21,7 +22,7 @@ class Post(models.Model):
         PUBLISHED = "PB", "Published" #status for poblish post
 
     title = models.CharField(max_length=250) # this stres title of blog
-    slug = models.SlugField(max_length=250) #slug field short label djn-reih-jazz
+    slug = models.SlugField(max_length=250, unique_for_date='publish') #slug field short label djn-reih-jazz
 
     #ADD MANY TO ONE RELATIONSHIP Author to Post each post written by user
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_post')
@@ -44,3 +45,14 @@ class Post(models.Model):
 
     def __str__(self): #method to return strin to easy read info from object
         return self.title
+    
+    #not sure
+    def get_absolute_url(self):
+        #return reverse('blog:post_detail', args=[self.publish.year, self.publish.month, self.publish.day, self.slug])
+        return reverse('home')
+    
+    
+    
+    
+    
+    
