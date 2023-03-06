@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from .models import Post
+from .models import Post, Category
 from .forms import PostForm, EditForm
 #adding pagination
 #from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -25,6 +25,13 @@ class AddPostView(CreateView):
     form_class = PostForm
     template_name = 'add_post.html'
     # fields = '__all__'
+    #fields = ('title', 'body')
+
+class AddCategoryView(CreateView):
+    model = Category
+    # form_class = PostForm
+    template_name = 'add_category.html'
+    fields = '__all__'
     #fields = ('title', 'body')
 
 class UpdatePostView(UpdateView):

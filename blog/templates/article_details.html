@@ -5,7 +5,7 @@
     <h1> {{post.title}}</h1>
     <p> Published {{post.publish}} by {{post.author}} </p>
     <hr>
-    {{post.body|safe:'200'|safe}}
+    {{post.body|safe }}
 
     <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
 

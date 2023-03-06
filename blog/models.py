@@ -14,6 +14,19 @@ class PublishedManager(models.Manager):
 
 #Post model allows to store post in database
 
+
+class Category(models.Model):
+    name = models.CharField(max_length=250)
+
+    def __str__(self): #method to return strin to easy read info from object
+        return self.name
+    
+    #not sure
+    def get_absolute_url(self):
+        #return reverse('blog:post_detail', args=[self.publish.year, self.publish.month, self.publish.day, self.slug])
+        return reverse('home')
+    
+
 class Post(models.Model):
 
     class Status(models.TextChoices): #that is a subclass of the class 
@@ -25,10 +38,9 @@ class Post(models.Model):
     slug = models.SlugField(max_length=250, unique_for_date='publish') #slug field short label djn-reih-jazz
 
     #ADD MANY TO ONE RELATIONSHIP Author to Post each post written by user
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_post')
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     #ondelete tells if author is deleted her posts are deleted
-
-
+    category = models.CharField(max_length=255, default='coding')
     body = models.TextField() #this stores body of blog
     publish = models.DateTimeField(default=timezone.now) #published at specific time
     created = models.DateTimeField(auto_now_add=True) #when the post was creates
