@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Category {% endblock%}
+
+{% block content %}
+
+{% if category_posts %}
+<h1> {{cats }} </h1>
+
+{% for post in category_posts %}
+
+                {{ post.category}}
+     <li><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a>
+           
+            Created by: {{ post.author }}
+        
+           
+            <br/>           
+        {{ post.body|truncatewords:30|linebreaks }} </li> 
+    {% endfor %}
+{%else %}
+Categoy dosn not exist
+
+{% endif %}
+{% endblock %}

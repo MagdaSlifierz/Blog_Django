@@ -1,16 +1,23 @@
 {% extends 'base.html' %}
 {% block title %} {{post.slug}} {% endblock%}
 
+
+
 {% block content %}
+
+current user: {{ user.id}}
+post auth : {{post.author.id}}
     <h1> {{post.title}}</h1>
     <p> Published {{post.publish}} by {{post.author}} </p>
     <hr>
-    {{post.body|safe }}
+    <p>{{post.body|safe }}</p> 
 
     <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
 
     {%if user.is_authenticated %}
+        {% if user.id == post.author.id %}
         <a href="{% url 'update_post' post.pk %}" class="btn btn-secondary">Edit</a>
         <a href="{% url 'delete_post' post.pk %}" class="btn btn-secondary">Delete</a>
+        {%endif%}
     {%endif%}
 {% endblock %}

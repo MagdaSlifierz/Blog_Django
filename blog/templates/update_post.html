@@ -2,6 +2,7 @@
 
 {% block content %}
 {% if user.is_authenticated %}
+    {% if user.id == post.author.id %}  
     <h1>Edit Post</h1>
         
     <div class="form-group"> 
@@ -13,9 +14,13 @@
             <button class="btn btn-primary">Update</button>
            
         </div> 
+    {% else %}
+    You are not allowd to update this article
+    {% endif %}
 
 {% else %}
         You are not login or sign it 
 
-{% endif %}
+
+{% endif %}s
 {% endblock %}

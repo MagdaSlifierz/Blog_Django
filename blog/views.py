@@ -15,9 +15,25 @@ class HomeView(ListView):
     context_object_name = 'posts'
     template_name = 'home.html'
 
+    def get_context_data(self, *args, **kwargs):
+        #get all categories
+        cat_menu = Category.objects.all()
+        # change them to dict and redirect on website
+        context = super(HomeView, self).get_context_data(*args, **kwargs)
+        context['cat_menu'] = cat_menu
+        return context
+
 class ArticleDetailView(DetailView):
     model = Post
     template_name = 'article_details.html'
+
+    def get_context_data(self, *args, **kwargs):
+        #get all categories
+        cat_menu = Category.objects.all()
+        # change them to dict and redirect on website
+        context = super(ArticleDetailView, self).get_context_data(*args, **kwargs)
+        context['cat_menu'] = cat_menu
+        return context
 
 
 class AddPostView(CreateView):
@@ -33,6 +49,19 @@ class AddCategoryView(CreateView):
     template_name = 'add_category.html'
     fields = '__all__'
     #fields = ('title', 'body')
+
+    
+def CategoryViewPost(request, cat):
+    category_posts = Post.objects.filter(category=cat.replace('-', ' '))
+
+    return render(request, 'category_post.html', { 'cat':cat.title().replace('-', ' '), 'category_posts': category_posts})
+
+
+
+    
+def CategoryViewList(request):
+    cat_menu_list = Category.objects.all()
+    return render(request, 'category_lists.html', { 'cat_menu_list': cat_menu_list})
 
 class UpdatePostView(UpdateView):
     model = Post

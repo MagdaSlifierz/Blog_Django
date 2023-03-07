@@ -6,9 +6,10 @@
     <h1>My blog</h1>
     {% for post in object_list %}
      <li><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a>
+            <a href="{%url 'category_post' post.category|slugify %}"> {{ post.category}} </a>
 
             {{ post.title }} - {{ post.author }}
-            {{ post.category}}
+            
            
             <br/>           
         {{ post.body|truncatewords:30|linebreaks }} </li> 
