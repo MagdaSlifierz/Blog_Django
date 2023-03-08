@@ -3,6 +3,7 @@
 {% block content %}
 
 {% if user.is_authenticated %}
+    {% if post.author.id == user.id %}
     <h1>Delete Post</h1>
     
     <br/>
@@ -12,8 +13,12 @@
         <strong> Are you sure, you want to delete post {{post.title}} </strong>
             <br/>
             <button class="btn btn-secondary">Delete</button>
+            <a href="{% url 'home'  %}" class="btn btn-secondary">Back</a>
         
     </div> 
+    {% else %}
+        You are not the user of this post, you can't delete it
+        {%endif%}
 {% else %}
     You are not login or sign it 
 {% endif %}
