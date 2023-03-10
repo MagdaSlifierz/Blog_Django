@@ -12,7 +12,7 @@ for choice in choices:
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'slug', 'author','category', 'body', 'publish','status')
+        fields = ('title', 'slug', 'author','category', 'body', 'snippet','publish','status', 'header_image')
 
 
         widgets = {
@@ -22,6 +22,7 @@ class PostForm(forms.ModelForm):
             # 'author': forms.Select(attrs={'class': 'form-control'}),
             'category': forms.Select(choices=choice_list, attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
+            'snippet' : forms.TextInput(attrs={'class': 'form-control'}),
             'publish': forms.TextInput(attrs={'class': 'form-control'}),
             # 'created': forms.TextInput(attrs={'class': 'form-control'}),
             # 'updated': forms.TextInput(attrs={'class': 'form-control'}),
@@ -31,14 +32,15 @@ class PostForm(forms.ModelForm):
 class EditForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'body')
+        fields = ('title', 'snippet')
 
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             # 'slug' : forms.TextInput(attrs={'class': 'form-control'}),
             # 'author': forms.Select(attrs={'class': 'form-control'}),
-            'body': forms.Textarea(attrs={'class': 'form-control'}),
+            # 'body': forms.Textarea(attrs={'class': 'form-control'}),
+            'snippet' : forms.TextInput(attrs={'class': 'form-control'})
             # 'publish': forms.TextInput(attrs={'class': 'form-control'}),
             # 'created': forms.TextInput(attrs={'class': 'form-control'}),
             # 'updated': forms.TextInput(attrs={'class': 'form-control'}),

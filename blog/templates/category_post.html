@@ -16,7 +16,7 @@
         
            
             <br/>           
-        {{ post.body|truncatewords:30|linebreaks }} </li> 
+        {{ post.body|truncatewords:30|linebreaks|safe }} </li> 
     {% endfor %}
 {%else %}
 Categoy dosn not exist

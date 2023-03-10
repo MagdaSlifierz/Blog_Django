@@ -11,7 +11,7 @@
             {{ post.title }} - {{ post.author }}
             
            
-            <br/>           
-        {{ post.body|truncatewords:30|linebreaks }} </li> 
+            <br/>       
+            {{ post.snippet }}  </li> 
     {% endfor %}
 {% endblock %}

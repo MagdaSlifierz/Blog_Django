@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block  title %} User Profile {%  endblock %}
+{% block content %}
+    <h1>User Profile  </h1>
+    
+
+   <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            {% if page_user.profie_pic %}
+                <img src="{{ page_user.profie_pic.url }}" width=150, height=150>
+            {% else %}
+                <img src="{% static 'blog/images/portrait.png'%}" width=150, height=150>
+
+            {% endif %}
+    
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">
+              {{ page_user.user.author }}
+          </h5>
+            <p class="card-text">
+                {{ page_user.bio }}
+            </p>
+            <p class=" small text-muted">
+            
+                {% if page_user.facebook_url %}
+                    | <a href="{{ page_user.facebook_url }}">Facebook</a>
+                {% endif %}
+  
+                {% if page_user.instagram_url %}
+                    | <a href="{{ page_user.instagram_url }}">Instagram</a>
+                {% endif %}
+  
+                {% if page_user.linkedIn_url %}
+                    | <a href="{{ page_user.linkedIn_url }}">LinkedIn</a>
+                {% endif %} </p>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}
+
