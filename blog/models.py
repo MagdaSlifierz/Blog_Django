@@ -39,6 +39,9 @@ class Profile(models.Model):
     def __str__(self): #method to return strin to easy read info from object
         return str(self.user)
     
+    def get_absolute_url(self):
+        #return reverse('blog:post_detail', args=[self.publish.year, self.publish.month, self.publish.day, self.slug])
+        return reverse('home')
     
 class Post(models.Model):
  
@@ -85,7 +88,13 @@ class Post(models.Model):
         return reverse('home')
     
     
-    
-    
+class Comment(models.Model):
+    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
+    name = models.CharField(max_length=225)
+    body = models.TextField()
+    date_added = models.DateTimeField(auto_now=True) 
+
+    def __str__(self): #method to return strin to easy read info from object
+        return  '%s - %s' % (self.post.title, self.name)
     
     
